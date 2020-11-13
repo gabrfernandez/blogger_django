@@ -20,5 +20,5 @@ class PostDetail(DetailView):
     context_object_name = 'single'
 
     def get_context_data(self, **kwargs):
-        context= super(PostDetail, self).get_context_data(**kwargs)
+        context = super(PostDetail, self).get_context_data(**kwargs)
         return context

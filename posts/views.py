@@ -1,7 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .models import *
-
+from .forms import PostCreationForm
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
+from django.template.defaultfilters import slugify
+from django.urls import reverse
 
 # Create your views here, class views
 class IndexView(ListView):
@@ -14,7 +18,8 @@ class IndexView(ListView):
         context['slider_posts'] = Post.objects.all().filter(slider_post=True)
         return context
 
-#don't have to pass id as argument as django knows its a detail view
+
+# don't have to pass id as argument as django knows its a detail view
 class PostDetail(DetailView):
     template_name = 'posts/detail.html'
     model = Post
@@ -23,6 +28,7 @@ class PostDetail(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PostDetail, self).get_context_data(**kwargs)
         return context
+
 
 class CategoryDetail(ListView):
     template_name = 'categories/category_detail.html'
@@ -36,8 +42,9 @@ class CategoryDetail(ListView):
     def get_context_data(self, **kwargs):
         context = super(CategoryDetail, self).get_context_data(**kwargs)
         self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
-        context['category']= self.category
+        context['category'] = self.category
         return context
+
 
 class TagDetail(ListView):
     model = Post
@@ -50,6 +57,31 @@ class TagDetail(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TagDetail, self).get_context_data(**kwargs)
-        self.tag = get_object_or_404(Tag, slug = self.kwargs['slug'])
-        context['tag']=self.tag
+        self.tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
+        context['tag'] = self.tag
         return context
+
+@method_decorator(login_required(login_url='users/login'), name="dispatch")
+class CreatePostView(CreateView):
+    template_name = 'posts/create-post.html'
+    form_class = PostCreationForm
+    model = Post
+
+    def get_success_url(self):
+        return reverse('detail', kwargs={"pk":self.object.pk, "slug":self.object.slug})
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.save()
+
+        tags = self.request.POST.get("tag").split(",")
+
+        for tag in tags:
+            current_tag = Tag.objects.filter(slug=slugify(tag))
+            if current_tag.count()<1:
+                create_tag = Tag.objects.create(title=tag)
+                form.instance.tag.add(create_tag)
+            else:
+                existed_tag = Tag.objects.get(slug=slugify(tag))
+                form.instance.tag.add(existed_tag)
+        return super(CreatePostView, self).form_valid(form)

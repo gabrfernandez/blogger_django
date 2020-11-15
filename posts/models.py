@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
 
+
 # Create your models here.
 class Category(models.Model):
     title = models.CharField(max_length=100)
@@ -17,6 +18,7 @@ class Category(models.Model):
     def post_count(self):
         return self.posts.all().count()
 
+
 class Tag(models.Model):
     title = models.CharField(max_length=50)
     slug = models.SlugField(editable=False)
@@ -31,6 +33,7 @@ class Tag(models.Model):
     def post_count(self):
         return self.posts.all().count()
 
+
 class Post(models.Model):
     title = models.CharField(max_length=150)
     content = models.TextField()
@@ -40,6 +43,7 @@ class Post(models.Model):
     slug = models.SlugField(default="slug", editable=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="posts", default=1)
     tag = models.ManyToManyField(Tag, related_name="posts", blank=True)
+    slider_post = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -47,4 +51,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-

@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.defaultfilters import slugify
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.db.models import F, Q
 
 # Create your views here, class views
 class IndexView(ListView):
@@ -25,6 +26,10 @@ class PostDetail(DetailView):
     template_name = 'posts/detail.html'
     model = Post
     context_object_name = 'single'
+
+    def get(self, request, *args, **kwargs):
+        self.hit = Post.objects.filter(id=self.kwargs['pk']).update(hit=F('hit')+1)
+        return super(PostDetail, self).get(request, *args,**kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(PostDetail, self).get_context_data(**kwargs)

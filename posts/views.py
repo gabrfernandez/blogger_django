@@ -14,6 +14,7 @@ class IndexView(ListView):
     template_name = "posts/index.html"
     model = Post
     context_object_name = 'posts'
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -33,7 +34,11 @@ class PostDetail(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostDetail, self).get_context_data(**kwargs)
+        context['previous'] = Post.objects.filter(id__lt=self.kwargs['pk']).order_by('-pk').first()
+        context['next'] = Post.objects.filter(id__gt=self.kwargs['pk']).order_by('pk').first()
         return context
+
+
 
 
 class CategoryDetail(ListView):

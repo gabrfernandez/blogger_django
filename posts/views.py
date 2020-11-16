@@ -45,6 +45,7 @@ class CategoryDetail(ListView):
     template_name = 'categories/category_detail.html'
     model = Post
     context_object_name = 'posts'
+    paginate_by = 3
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
@@ -61,6 +62,7 @@ class TagDetail(ListView):
     model = Post
     template_name = 'tags/tag_detail.html'
     context_object_name = 'posts'
+    paginate_by = 3
 
     def get_queryset(self):
         self.tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
@@ -147,3 +149,19 @@ class DeletePostView(DeleteView):
         if self.object.user != request.user:
             return HttpResponseRedirect('/')
         return super(DeletePostView, self).get(request, *args, **kwargs)
+
+class SearchView(ListView):
+    model = Post
+    template_name = 'posts/search.html'
+    paginate_by = 3
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        query = self.request.GET.get("q")
+
+        if query:
+            return Post.objects.filter(Q(title__icontains=query)|
+                                       Q(content__icontains=query)|
+                                       Q(tag__title__icontains=query)
+                                       ).order_by('id').distinct()
+        return Post.objects.all().order_by('id')

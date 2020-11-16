@@ -8,12 +8,13 @@
             	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
 				<div class="container">
 					<div class="banner_content text-center">
-						<h2>Your Profile</h2>
+						<h2>My Profile</h2>
 						<div class="page_link">
 							<img src="{{userprofile.image.url}}">
                             <h4 style="color:white">Username: {{userprofile.user.username | title}}</h4>
                             <h4 style="color:white">Birthday: {{userprofile.birthday}}</h4>
-                            <p style="color:white">Bio: {{userprofile.bio | linebreaks}}</p>
+                            <p style="color:white">Bio: {{userprofile.bio|linebreaks}}</p>
+                            <a href="{% url 'users:update_profile' slug=userprofile.slug%}" class="genric-btn info circle" style="margin-bottom:20px">Update Profile</a>
 						</div>
 					</div>
 				</div>

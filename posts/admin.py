@@ -10,7 +10,15 @@ class AdminPost(admin.ModelAdmin):
     class Meta:
         model = Post
 
+class AdminComment(admin.ModelAdmin):
+    list_filter = ('publishing_date',)
+    search_fields = ('name','email','content','post__title')
+
+    class Meta:
+        model = Comment
+
 admin.site.register(Post, AdminPost)
 
 admin.site.register(Category)
 admin.site.register(Tag)
+admin.site.register(Comment, AdminComment)

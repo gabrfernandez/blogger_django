@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 from django.utils.decorators import method_decorator
@@ -21,10 +22,11 @@ class UserLogoutView(LogoutView):
     template_name = 'users/login.html'
 
 @method_decorator(login_required(login_url='/users/login'), name="dispatch")
-class UserProfileUpdateView(UpdateView):
+class UserProfileUpdateView(SuccessMessageMixin, UpdateView):
     model = UserProfile
     template_name = 'users/profile-update.html'
     form_class = UserProfileForm
+    success_message = "Your Profile has been updated"
 
     def form_valid(self, form):
         form.instance.user = self.request.user

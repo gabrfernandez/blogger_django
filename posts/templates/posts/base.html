@@ -23,9 +23,9 @@
         <link rel="stylesheet" href="{% static "css/responsive.css"%}">
     </head>
     <body>
-
         <!--================Header Menu Area =================-->
         <header class="header_area">
+            {% include 'posts/messages.html'%}
             <div class="logo_part">
             	<div class="container">
             		<a class="logo" href="{% url 'index'%}"><img src="{% static "img/logo.png" %}" alt=""></a>

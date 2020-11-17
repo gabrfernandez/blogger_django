@@ -3,7 +3,7 @@
 {% block content %}
 
         <!--================Post Slider Area =================-->
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				{% for post in slider_posts%}
 
@@ -14,7 +14,7 @@
 						<div class="post_text">
 							{% for tag in post.tag.all %}
 							<a class="cat" href="{% url 'tag_detail' tag.slug%}">{{tag.title}}</a>
-							{% endfor %}
+							{% endfor %}boot
 							<a href="{% url 'detail' pk=post.pk slug=post.slug %}"><h4>{{post.title}}</h4></a>
 							<p>{{post.content | truncatechars:150 }}</p>
 							<div class="date">
@@ -36,7 +36,7 @@
                     <div class="col-lg-8">
                         <div class="blog_left_sidebar">
 							{% for post in posts %}
-                            <article class="blog_style1">
+                            <article class="blog_style1 my-3" style="border:solid grey">
                             	<div class="blog_img">
                             		<img class="img-fluid" src="{{post.image.url}}" alt="" style="width:100%">
                             	</div>

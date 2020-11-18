@@ -1,0 +1,33 @@
+a:link {
+  color: teal;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: blue;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.banner{
+    background: url(../img/banner/banner.jpg) no-repeat scroll center center;
+    display:flex;
+}
+
+.display-4{
+    color:white;
+}
+
+
+
+#sidebar {
+    border:solid;
+    border-color:grey
+}

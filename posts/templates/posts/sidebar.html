@@ -1,7 +1,7 @@
 {% load static %}
 {% load custom_tags %}
-<div class="col-lg-4">
-                        <div class="blog_right_sidebar">
+<div id=" sidebar"class=" col-lg-4" >
+                        <div class="blog_right_sidebar my-3">
                             <aside class="single_sidebar_widget search_widget">
                                 <form action="{% url 'search' %}" method="GET">
                                     <div class="input-group">
@@ -64,9 +64,8 @@
                                 <ul class="list">
                                     {% tags as labels %}
                                     {% for label in labels%}
-                                    <li><a href="{% url 'tag_detail' slug=label.slug%}">{{label}}</a></li>
+                                    <li><a class="badge badge-secondary" href="{% url 'tag_detail' slug=label.slug%}">{{label}}</a></li>
                                     {% endfor %}
-
                                 </ul>
                             </aside>
                         </div>

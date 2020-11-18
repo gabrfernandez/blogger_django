@@ -3,19 +3,12 @@
 
 {% block content %}
         <!--================Home Banner Area =================-->
-        <section class="banner_area">
-            <div class="banner_inner d-flex align-items-center">
-            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
-				<div class="container">
-					<div class="banner_content text-center">
-						<h2>Post a Blog</h2>
-						<div class="page_link">
-							<a href="{% url 'index' %}">Home</a>
-						</div>
-					</div>
-				</div>
-            </div>
-        </section>
+        <div class="jumbotron jumbotron-fluid banner">
+          <div class="container d-flex justify-content-center flex-column">
+            <h1 class="display-4">Create a Post</h1>
+            <p class="lead"><a href="{% url 'index' %}">Home</a></p>
+          </div>
+        </div>
         <!--================End Home Banner Area =================-->
 
         <!--================Blog Area =================-->
@@ -51,7 +44,7 @@
                                 <div class="mt-10">
                                     <input type="text" name="tag" placeholder="Tag" onfocus="this.placeholder = ''" onblur="this.placeholder = 'tag'" required class="single-input">
                                 </div>
-                                <input type="submit" class="genric-btn success circle" style="float:right; margin-top:30px" value="Add Post">
+                                <input type="submit" class="btn btn-success" style="float:right; margin-top:30px" value="Add Post">
                             </form>
                         </div>
 

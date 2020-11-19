@@ -4,7 +4,7 @@
 {% block content %}
         <!--================Home Banner Area =================-->
         <div class="jumbotron jumbotron-fluid banner">
-          <div class="container d-flex justify-content-center flex-column">
+          <div class="container d-flex justify-content-center flex-column banner-text rounded">
             <h1 class="display-4">Search Results</h1>
             <p class="lead"><a href="{% url 'index' %}">Home</a></p>
           </div>
@@ -25,7 +25,7 @@
                             	<div class="blog_text">
 									<div class="blog_text_inner">
 										{% for tag in post.tag.all%}
-										<a class="cat" href="{url 'tag_detail' tag.slug}">{{tag.title}}</a>
+										<button class="btn btn-outline-secondary btn-sm"><a href="{% url 'tag_detail' tag.slug%}">{{tag.title}}</a></button>
 										{%endfor%}
 										<a href="{% url 'detail' pk=post.id slug=post.slug%}"><h4>{{post.title}}</h4></a>
 										<p>{{post.content | truncatechars:150}}</p>

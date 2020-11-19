@@ -18,14 +18,14 @@
                     <div class="col-lg-8">
                         <div class="blog_left_sidebar">
                             {% for post in posts %}
-                            <article class="blog_style1">
+                            <article class="blog_style1 pl-2">
                             	<div class="blog_img">
                             		<img class="img-fluid" src="{{post.image.url}}" alt="">
                             	</div>
                             	<div class="blog_text">
 									<div class="blog_text_inner">
 										{% for tag in post.tag.all%}
-										<a class="cat" href="{url 'tag_detail' tag.slug}">{{tag.title}}</a>
+										<button class="btn btn-outline-secondary btn-sm"><a href="{% url 'tag_detail' tag.slug%}">{{tag.title}}</a></button>
 										{%endfor%}
 										<a href="{% url 'detail' pk=post.id slug=post.slug%}"><h4>{{post.title}}</h4></a>
 										<p>{{post.content | truncatechars:150}}</p>

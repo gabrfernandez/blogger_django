@@ -2,7 +2,7 @@
 {% load custom_tags %}
 <div id=" sidebar"class=" col-lg-4" >
                         <div class="blog_right_sidebar my-3">
-                            <aside class="single_sidebar_widget search_widget">
+                            <aside class="my-3 rounded">
                                 <form action="{% url 'search' %}" method="GET">
                                     <div class="input-group">
                                         <input type="text" class="form-control" placeholder="Search Posts" name="q">
@@ -26,47 +26,59 @@
                                 <p>Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.</p>
                                 <div class="br"></div>
                             </aside>
-                            <aside class="single_sidebar_widget popular_post_widget">
-                                <h3 class="widget_title">Popular Posts</h3>
+
+                            <div class="card" style="width: 18rem;">
+                               <div class="card-header">
+                                    Popular Post
+                               </div>
                                 {% hit_posts as posts %}
                                 {% for post in posts %}
-                                <div class="media post_item">
-                                    <img src="{{post.image.url}}" alt="post" style="width:100px;height:60px">
-                                    <div class="media-body">
-                                        <a href="{% url 'detail' post.pk post.slug%}"><h3>{{post.title}}</h3></a>
-                                        <p>Hit:{{post.hit}}</p>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                                <div class="br"></div>
-                            </aside>
+                               <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <div class="media">
+                                            <img src="{{post.image.url}}" class="mr-3" alt="..." style="height:64px; width:100px;">
+                                            <div class="media-body">
+                                                <a href="{% url 'detail' post.pk post.slug %}"><h5>{{ post.title }}</h5></a>
+                                                Hit: {{post.hit}}
+                                            </div>
+                                        </div>
+                                    </li>
+                               </ul>
+                                {%endfor %}
+                            </div>
+
                             <aside class="single_sidebar_widget">
                                 <a href="#"><img class="img-fluid" src="{% static "img/blog/add.jpg" %}" alt=""></a>
                                 <div class="br"></div>
                             </aside>
-                            <aside class="single_sidebar_widget post_category_widget">
-                                <h4 class="widget_title">Post Catgories</h4>
-                                <ul class="list cat-list">
+
+                            <div class="card mt-3 " style="width: 18rem;">
+                                <div class="card-header">
+                                    Post Catgories
+                                </div>
+                                <ul class="list-group list-group-flush">
                                     {% categories as categories %}
                                     {% for category in categories %}
-                                    <li>
+                                    <li class="list-group-item">
                                         <a href="{% url 'category_detail' pk=category.pk slug=category.slug %}" class="d-flex justify-content-between">
-                                            <p>{{category.title}}</p>
-                                            <p>{{category.post_count}}</p>
+                                            <h6>{{category.title}}</h6>
+                                            <h6 class="badge badge-primary badge-pill">{{category.post_count}}</h6>
                                         </a>
                                     </li>
                                     {% endfor %}
                                 </ul>
-                                <div class="br"></div>
-                            </aside>
-                            <aside class="single-sidebar-widget tag_cloud_widget">
-                                <h4 class="widget_title">Tag Clouds</h4>
-                                <ul class="list">
+                            </div>
+
+                            <div class="card mt-3" style="width: 18rem;">
+                                <div class="card-header">
+                                    Tag Clouds
+                                </div>
+                                <ul class="list-group">
                                     {% tags as labels %}
                                     {% for label in labels%}
-                                    <li><a class="badge badge-secondary" href="{% url 'tag_detail' slug=label.slug%}">{{label}}</a></li>
+                                    <li class="list-group-item"><a href="{% url 'tag_detail' slug=label.slug%}">{{label}}</a></li>
                                     {% endfor %}
                                 </ul>
-                            </aside>
+                            </div>
                         </div>
                     </div>

@@ -10,21 +10,14 @@
         <title>Blogger</title>
 
 <!--         Bootstrap CSS -->
-<!--        <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">-->
-<!--        <link rel="stylesheet" href="{% static 'vendors/linericon/style.css'%}">-->
-<!--        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css'%}">-->
-<!--        <link rel="stylesheet" href="{% static 'vendors/owl-carousel/owl.carousel.min.css'%}">-->
-<!--        <link rel="stylesheet" href="{% static 'vendors/lightbox/simpleLightbox.css'%}">-->
-<!--        <link rel="stylesheet" href="{% static 'vendors/nice-select/css/nice-select.css'%}">-->
-<!--        <link rel="stylesheet" href="{% static 'vendors/animate-css/animate.css'%}">-->
-<!--        <link rel="stylesheet" href="{% static 'vendors/jquery-ui/jquery-ui.css'%}">-->
-        <!-- main css -->
-        <link rel="stylesheet" href="{% static "css/mycss.css"%}"
-<!--        <link rel="stylesheet" href="{% static "css/responsive.css"%}">-->
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <!-- main css -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/mycss.css'%}">
+
     </head>
     <body>
-        <!--================Header Menu Area =================-->
+<!--        ================Header Menu Area =================-->
         <header class="header">
             {% include 'posts/messages.html'%}
 <!--            <div class="logo_part">-->
@@ -36,7 +29,7 @@
 				<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
 					<div class="container my-3">
 						<!-- Brand and toggle get grouped for better mobile display -->
-						<a class="navbar-brand " href="{% url 'index'%}"><img src="{% static "img/blog.png" %}" alt="" width="50" height="50" alt="" loading="lazy"></a>
+						<a class="navbar-brand " href="{% url 'index'%}"><img src="{% static "img/favicon.png" %}" alt="" width="50" height="50" alt="" loading="lazy"></a>
 
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>

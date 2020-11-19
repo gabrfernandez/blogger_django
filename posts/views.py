@@ -15,7 +15,7 @@ class IndexView(ListView):
     template_name = "posts/index.html"
     model = Post
     context_object_name = 'posts'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -67,7 +67,7 @@ class CategoryDetail(ListView):
     template_name = 'categories/category_detail.html'
     model = Post
     context_object_name = 'posts'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_queryset(self):
         self.category = get_object_or_404(Category, pk=self.kwargs['pk'])
@@ -84,7 +84,7 @@ class TagDetail(ListView):
     model = Post
     template_name = 'tags/tag_detail.html'
     context_object_name = 'posts'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_queryset(self):
         self.tag = get_object_or_404(Tag, slug=self.kwargs['slug'])
@@ -175,7 +175,7 @@ class DeletePostView(DeleteView):
 class SearchView(ListView):
     model = Post
     template_name = 'posts/search.html'
-    paginate_by = 3
+    paginate_by = 5
     context_object_name = 'posts'
 
     def get_queryset(self):

@@ -8,8 +8,8 @@ from users.models import UserProfile
 class RegisterForm(UserCreationForm):
     username = forms.CharField(max_length=50)
     email = forms.EmailField(max_length=50)
-    password1 = forms.CharField()
-    password2 = forms.CharField()
+    password1 = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(widget=forms.PasswordInput)
 
     class Meta(UserCreationForm):
         model = User

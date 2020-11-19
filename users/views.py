@@ -48,7 +48,7 @@ class UserProfileView(ListView):
     template_name = 'users/profile.html'
     model = Post
     context_object_name = 'userposts'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data(**kwargs)
@@ -63,7 +63,7 @@ class UserPostView(ListView):
     template_name = 'users/user-post.html'
     model = Post
     context_object_name = 'posts'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_queryset(self):
         return Post.objects.filter(user=self.kwargs['pk'])
@@ -72,7 +72,7 @@ class UserListView(ListView):
     template_name = 'users/user-list.html'
     model = UserProfile
     context_object_name = 'profiles'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(UserListView, self).get_context_data(**kwargs)

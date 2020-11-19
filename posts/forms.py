@@ -6,7 +6,21 @@ from captcha.fields import ReCaptchaField
 
 
 class PostCreationForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PostCreationForm, self).__init__(*args, **kwargs)
+        self.helper=FormHelper()
+        self.helper.form_method='POST'
+        self.helper.field_class='mt-10'
+        self.helper.layout = Layout(
+            Field("title", css_class="single-input", placeholder="Title"),
+            Field("category", css_class="single-input"),
+            Field("content", css_class="single-input", placeholder="Content"),
+            Field("image", css_class="single-input"),
+            Field("tag", css_class="single-input", placeholder="Tag"),
+        )
+        self.helper.add_input(Submit('submit', 'Post', css_class='btn btn-success'))
 
+    tag = forms.CharField()
     class Meta:
         model = Post
         widgets = {

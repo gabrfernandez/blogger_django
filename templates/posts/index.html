@@ -3,11 +3,11 @@
 {% block content %}
 
         <!--================Post Slider Area =================-->
-		<div class="slider .d-sm-none .d-md-block">
-			<h3 class="card-header">Slider Posts - Our Featured Posts</h3>
+		<div class="slider">
+			<a class="btn btn-light d-flex justify-content-center scroll" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><h3 class="card-header">Slider Posts - Our Featured Posts</h3></a>
 			<div class="row d-flex justify-content-center scroll">
 				{% for post in slider_posts %}
-				<div class="card scroll-item" style="width: 18rem;">
+				<div class="card scroll-item collapse multi-collapse"  id="multiCollapseExample1" style="width: 18rem;">
   					<img src="{{ post.image.url }}" class="card-img-top" alt="...">
   					<div class="card-body">
 						{% for tag in post.tag.all %}
@@ -73,7 +73,7 @@
 									{%endif%}
 
 									{% for i in paginator.page_range %}
-									{%if page_object.number == i %}
+									{% if page_object.number == i %}
 		                            <li class="page-item active"><a href="#" class="page-link">{{i}}</a></li>
 									{%else%}
 		                            <li class="page-item"><a href="?page={{i}}" class="page-link">{{i}}</a></li>

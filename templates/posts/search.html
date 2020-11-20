@@ -36,6 +36,9 @@
 									</div>
                             	</div>
                             </article>
+							{% if post =0 %}
+							<h1>Sorry</h1>
+							{% endfor %}
                             {% endfor %}
 							{% if is_paginated %}
                             <nav class="blog-pagination justify-content-center d-flex">

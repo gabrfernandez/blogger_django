@@ -1,0 +1,84 @@
+{% load static %}
+{% load custom_tags %}
+<div id=" sidebar"class=" col-lg-4" >
+                        <div class="blog_right_sidebar my-3">
+                            <aside class="my-3 rounded">
+                                <form action="{% url 'search' %}" method="GET">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search Posts" name="q">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+                                        </span>
+                                    </div>
+                                </form><!-- /input-group -->
+                                <div class="br"></div>
+                            </aside>
+                            <aside class="author_section">
+                                <img class="author_img rounded-circle" id="author_img" src="{% static "img/blog/gabe.png" %}" alt="">
+                                <h4>Gabriel Fernandez</h4>
+                                <p>Blog writer</p>
+                                <div class="social_icon">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-github"></i></a>
+                                    <a href="#"><i class="fa fa-behance"></i></a>
+                                </div>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+                                <div class="br"></div>
+                            </aside>
+
+                            <div class="card" style="width: 18rem;">
+                               <div class="card-header">
+                                    Popular Post
+                               </div>
+                                {% hit_posts as posts %}
+                                {% for post in posts %}
+                               <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <div class="media">
+                                            <img src="{{post.image.url}}" class="mr-3" alt="..." style="height:64px; width:100px;">
+                                            <div class="media-body">
+                                                <a href="{% url 'detail' post.pk post.slug %}"><h5>{{ post.title }}</h5></a>
+                                                Hit: {{post.hit}}
+                                            </div>
+                                        </div>
+                                    </li>
+                               </ul>
+                                {%endfor %}
+                            </div>
+
+                            <aside class="single_sidebar_widget">
+                                <a href="#"><img class="img-fluid" src="{% static "img/blog/add.jpg" %}" alt=""></a>
+                                <div class="br"></div>
+                            </aside>
+
+                            <div class="card mt-3 " style="width: 18rem;">
+                                <div class="card-header">
+                                    Post Catgories
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    {% categories as categories %}
+                                    {% for category in categories %}
+                                    <li class="list-group-item">
+                                        <a href="{% url 'category_detail' pk=category.pk slug=category.slug %}" class="d-flex justify-content-between">
+                                            <h6>{{category.title}}</h6>
+                                            <h6 class="badge badge-primary badge-pill">{{category.post_count}}</h6>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+
+                            <div class="card mt-3" style="width: 18rem;">
+                                <div class="card-header">
+                                    Tag Clouds
+                                </div>
+                                <ul class="list-group">
+                                    {% tags as labels %}
+                                    {% for label in labels%}
+                                    <li class="list-group-item"><a href="{% url 'tag_detail' slug=label.slug%}">{{label}}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>

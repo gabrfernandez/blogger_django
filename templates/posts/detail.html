@@ -14,7 +14,7 @@
         <!--================End Home Banner Area =================-->
 
         <!--================Blog Area =================-->
-        <section class="blog_area p_120 single-post-area">
+        <section class="blog_area single-post-area">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
@@ -49,14 +49,11 @@
                             <a href="{% url 'post_delete' single.pk single.slug%}" class="btn btn-danger">Delete</a>
                             {% endif %}
       						<div class="news_d_footer">
-      							<a href="#"><i class="lnr lnr lnr-heart"></i>Lily and 4 people like this</a>
-      							<a class="justify-content-center ml-auto" href="#"><i class="lnr lnr lnr-bubble"></i>06 Comments</a>
       							<div class="news_socail ml-auto">
-									<a href="#"><i class="fa fa-facebook"></i></a>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-									<a href="#"><i class="fa fa-youtube-play"></i></a>
-									<a href="#"><i class="fa fa-pinterest"></i></a>
-									<a href="#"><i class="fa fa-rss"></i></a>
+									<a href="#"><i class="fab fa-facebook"></i></a>
+									<a href="#"><i class="fab fa-twitter"></i></a>
+									<a href="#"><i class="fab fa-youtube"></i></a>
+									<a href="#"><i class="fab fa-pinterest"></i></a>
 								</div>
       						</div>
        					</div>
@@ -78,7 +75,7 @@
                                 {% else %}
                                 <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                                     <div class="thumb">
-                                        <a href="#"><img class="img-fluid" src="{% static "img/blog/prev.jpg"%}" alt="" style="width:60; height:60px"></a>
+                                        <a href="#"><img class="img-fluid border" src="{% static "img/blog/empty.png"%}" alt="" style="width:60; height:60px;"></a>
                                     </div>
                                     <div class="arrow">
                                         <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
@@ -113,7 +110,7 @@
                                         <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
                                     </div>
                                     <div class="thumb">
-                                        <a href="#"><img class="img-fluid" src="{% static "img/blog/next.jpg"%}" alt="" style="width:60px;height:60px"></a>
+                                        <a href="#"><img class="img-fluid border" src="{% static "img/blog/empty.png"%}" alt="" style="width:60px;height:60px"></a>
                                     </div>
                                 </div>
                                 {%endif%}

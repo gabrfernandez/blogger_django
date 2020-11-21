@@ -4,7 +4,7 @@
 {% block content %}
         <!--================Home Banner Area =================-->
         <div class="jumbotron jumbotron-fluid banner">
-          <div class="container d-flex justify-content-center flex-column">
+          <div class="container d-flex justify-content-center flex-column banner-text rounded">
             <h1 class="display-4">User's Post</h1>
             <p class="lead"><a href="{% url 'index' %}">Home</a></p>
           </div>
@@ -31,7 +31,7 @@
 										<p>{{post.content | truncatechars:150}}</p>
 										<div class="date">
 											<a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> {{post.publishing_date}}</a>
-											<a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+
 										</div>
 									</div>
                             	</div>

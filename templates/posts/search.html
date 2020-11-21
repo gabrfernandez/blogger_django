@@ -36,9 +36,8 @@
 									</div>
                             	</div>
                             </article>
-							{% if post =0 %}
-							<h1>Sorry</h1>
-							{% endfor %}
+							{% empty %}
+							<h1><i class="far fa-sad-tear"></i> Sorry, no results</h1>
                             {% endfor %}
 							{% if is_paginated %}
                             <nav class="blog-pagination justify-content-center d-flex">

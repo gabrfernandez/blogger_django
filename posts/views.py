@@ -13,7 +13,7 @@ from django.views.generic.edit import FormMixin
 # Create your views here, class views
 class IndexView(ListView):
     template_name = "posts/index.html"
-    model = Post
+    queryset = Post.objects.order_by('-id')
     context_object_name = 'posts'
     paginate_by = 5
 

@@ -56,7 +56,7 @@ class CreateCommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CreateCommentForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_method = "post"
+        self.helper.form_method = "POST"
         self.helper.layout = Layout(
             Field("name", css_class="form-control"),
             Field("email", css_class="form_control"),

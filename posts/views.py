@@ -13,9 +13,11 @@ from django.views.generic.edit import FormMixin
 # Create your views here, class views
 class IndexView(ListView):
     template_name = "posts/index.html"
-    queryset = Post.objects.order_by('-id')
     context_object_name = 'posts'
     paginate_by = 5
+
+    def get_queryset(self):
+        return Post.objects.order_by('-id')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -24,7 +26,7 @@ class IndexView(ListView):
 
 
 # don't have to pass id as argument as django knows its a detail view
-class PostDetail(DetailView, FormMixin):
+class PostDetail(DetailView,FormMixin):
     template_name = 'posts/detail.html'
     model = Post
     context_object_name = 'single'
@@ -32,7 +34,7 @@ class PostDetail(DetailView, FormMixin):
 
     def get(self, request, *args, **kwargs):
         self.hit = Post.objects.filter(id=self.kwargs['pk']).update(hit=F('hit')+1)
-        return super(PostDetail, self).get(request, *args,**kwargs)
+        return super(PostDetail, self).get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super(PostDetail, self).get_context_data(**kwargs)
@@ -49,7 +51,7 @@ class PostDetail(DetailView, FormMixin):
         else:
             return super(PostDetail, self).form_invalid(form)
 
-    def post(self, *args, **kwargs):
+    def post(self,*args,**kwargs):
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
@@ -58,7 +60,7 @@ class PostDetail(DetailView, FormMixin):
             return self.form_valid(form)
 
     def get_success_url(self):
-        return reverse('detail', kwargs={"pk":self.object.pk, "slug":self.object.slug})
+        return reverse('detail',kwargs={"pk":self.object.pk,"slug":self.object.slug})
 
 
 

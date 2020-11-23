@@ -1,0 +1,76 @@
+a:link {
+  color: teal;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: teal;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.banner{
+    background: url(../img/banner/home-banner.jpg) no-repeat scroll center center;
+    display:flex;
+}
+
+.banner-text{
+    background-color:#F0F8FF;
+}
+
+/* carousel section */
+
+
+.carousel-text{
+    background:rgb(250,249,255);
+    border-radius:25px;
+}
+
+.carousel-text > p{
+    color:black;
+}
+
+.scroll {
+    overflow: auto;
+    white-space: normal;
+}
+
+.scroll-item{
+    display:flex;
+}
+
+/* index */
+article{
+    border:solid;
+    border-color:#F8F8F8;
+    box-shadow: 5px 10px #F0F8FF;
+}
+
+
+/* sidebar*/
+#sidebar {
+    border:solid;
+    border-color:grey
+}
+
+.mr-3 > img{
+    width:64px;
+    height:64px;
+}
+
+#author_img{
+    width:auto;
+    height:200px;
+}
+
+
+footer p{
+    color:white;
+}

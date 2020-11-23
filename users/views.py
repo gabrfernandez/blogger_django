@@ -7,13 +7,27 @@ from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, UpdateView, ListView
 from posts.models import Post
 from .forms import RegisterForm, UserProfileForm
-from .models import UserProfile\
+from .models import UserProfile
+from django.contrib.auth import authenticate, login
+from django.contrib import auth
 
 # Create your views here.
 class RegisterView(CreateView):
     template_name = 'users/register.html'
     form_class = RegisterForm
     success_url = '/'
+
+    # def form_valid(self, form):
+    #     # save the new user first
+    #     form.save()
+    #     # get the username and password
+    #     username = self.request.POST['username']
+    #     password = self.request.POST['password1']
+    #     # authenticate user then login
+    #     user = authenticate(username=username, password=password)
+    #     login(self.request, user)
+    #     return HttpResponseRedirect('/')
+
 
 class UserLoginView(LoginView):
     template_name = 'users/login.html'
@@ -48,7 +62,7 @@ class UserProfileView(ListView):
     template_name = 'users/profile.html'
     model = Post
     context_object_name = 'userposts'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data(**kwargs)
@@ -63,7 +77,7 @@ class UserPostView(ListView):
     template_name = 'users/user-post.html'
     model = Post
     context_object_name = 'posts'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_queryset(self):
         return Post.objects.filter(user=self.kwargs['pk'])
@@ -72,7 +86,7 @@ class UserListView(ListView):
     template_name = 'users/user-list.html'
     model = UserProfile
     context_object_name = 'profiles'
-    paginate_by = 3
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(UserListView, self).get_context_data(**kwargs)

@@ -30,10 +30,10 @@
                             </article>
        						<div class="user_details">
 
-       							<div class="float-right">
+       							<div class="float">
        								<div class="media">
        									<div class="media-body">
-       										<h5><a href="{% url 'users:user_posts' single.pk%}">{{single.user.username}}</a></h5>
+       										<h5><a href="{% url 'users:user_posts' single.user.pk%}">Posted by: {{single.user.username}}</a></h5>
        										<p>{{single.publishing_date}}</p>
        									</div>
        								</div>

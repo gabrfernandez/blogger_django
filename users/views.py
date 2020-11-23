@@ -17,16 +17,16 @@ class RegisterView(CreateView):
     form_class = RegisterForm
     success_url = '/'
 
-    # def form_valid(self, form):
-    #     # save the new user first
-    #     form.save()
-    #     # get the username and password
-    #     username = self.request.POST['username']
-    #     password = self.request.POST['password1']
-    #     # authenticate user then login
-    #     user = authenticate(username=username, password=password)
-    #     login(self.request, user)
-    #     return HttpResponseRedirect('/')
+    def form_valid(self, form):
+        # save the new user first
+        form.save()
+        # get the username and password
+        username = self.request.POST['username']
+        password = self.request.POST['password1']
+        # authenticate user then login
+        user = authenticate(username=username, password=password)
+        login(self.request, user)
+        return HttpResponseRedirect('/')
 
 
 class UserLoginView(LoginView):

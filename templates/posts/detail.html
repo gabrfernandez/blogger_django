@@ -29,7 +29,6 @@
                                 <a href="#"><h4>{{single.title}}</h4></a>
                             </article>
        						<div class="user_details">
-
        							<div class="float">
        								<div class="media">
        									<div class="media-body">
@@ -46,7 +45,7 @@
                             <a href="{% url 'post_delete' single.pk single.slug%}" class="btn btn-danger">Delete</a>
                             {% endif %}
       						<div class="news_d_footer">
-      							<div class="news_socail ml-auto">
+      							<div class="user_social ml-auto">
 									<a href="#"><i class="fab fa-facebook"></i></a>
 									<a href="#"><i class="fab fa-twitter"></i></a>
 									<a href="#"><i class="fab fa-youtube"></i></a>
@@ -64,7 +63,7 @@
                                     <div class="arrow">
                                         <a href="{% url 'detail' previous.pk previous.slug%}"><span class="lnr text-white lnr-arrow-left"></span></a>
                                     </div>
-                                    <div class="detials">
+                                    <div class="details">
                                         <p>Prev Post</p>
                                         <a href="{% url 'detail' previous.pk previous.slug%}"><h4>{{previous.title}}</h4></a>
                                     </div>
@@ -77,7 +76,7 @@
                                     <div class="arrow">
                                         <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
                                     </div>
-                                    <div class="detials">
+                                    <div class="details">
                                         <p>No Prev Post</p>
                                         <a href="#"><h4>No Prev Post</h4></a>
                                     </div>
@@ -86,7 +85,7 @@
 
                                 {%if next%}
                                 <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                    <div class="detials">
+                                    <div class="details">
                                         <p>Next Post</p>
                                         <a href="{% url 'detail' next.pk next.slug%}"><h4>{{next.title}}</h4></a>
                                     </div>
@@ -99,7 +98,7 @@
                                 </div>
                                 {% else%}
                                 <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                    <div class="detials">
+                                    <div class="details">
                                         <p>Next Post</p>
                                         <a href="#"><h4>No Next Post</h4></a>
                                     </div>
@@ -122,7 +121,7 @@
 <!--                                        <div class="thumb">-->
 <!--                                            <img src="{% static 'img/user_default.png' %}" alt="">-->
 <!--                                        </div>-->
-                                        <div class="desc">
+                                        <div class="comment-desc">
                                             <h5><a href="#">{{comment.name}}</a></h5>
                                             <p class="date">{{comment.publishing_date}} </p>
                                             <p class="comment">
